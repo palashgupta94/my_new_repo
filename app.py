@@ -38,5 +38,13 @@ def submit():
 def success():
     return render_template('success.html')
 
+@app.route('/submittodoitem', methods=['POST'])
+def submit_item():
+    itemName = request.form['itemName']
+    itemDescription = request.form['itemDescription']
+    collection.insert_one({'name': itemName, 'description': itemDescription})
+    return jsonify({'status': 'success'})
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
