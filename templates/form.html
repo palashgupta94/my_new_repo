@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+
+    <body>
+        <h2>Submit Data</h2>
+        {% if error %}
+          <p style="color:red;">Error: {{ error }}</p>
+        {% endif %}
+        <form method="POST">
+          Name: <input type="text" name="name" required><br>
+          Email: <input type="email" name="email" required><br>
+          <input type="submit" value="Submit">
+        </form>
+      </body>
+    
+</body>
+</html>
