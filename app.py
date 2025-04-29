@@ -37,6 +37,19 @@ def submit():
 @app.route('/success', methods=['GET'])
 def success():
     return render_template('success.html')
+    
+@app.route('/submittodoitem', methods=['GET', 'POST'])
+def submit_to_do():
+    if request.method == 'POST':
+        try:
+            itemName = request.form['item_name']
+            itemDescription = request.form['item_desc']
+            app.logger.info(f"task name: {itemName}, desciption: {itemDescription}")
+            collection.insert_one({'name': itemName, 'description': itemDescription})
+            return jsonify({'status': 'success'})
+        except Exception as e:
+            print(e)
+    return render_template('To-Do page.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
